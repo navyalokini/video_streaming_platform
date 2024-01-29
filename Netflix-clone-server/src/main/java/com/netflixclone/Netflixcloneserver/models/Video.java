@@ -4,30 +4,18 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 
-
-@NoArgsConstructor
-@AllArgsConstructor
 @Entity
-
 public class Video {
+
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-
     private String link;
-
-
-    private String currentDate;
-
-
-
-    private String updateDate;
+    private String createdDate;
+    private String updatedDate;
 
     public long getId() {
         return id;
@@ -45,19 +33,19 @@ public class Video {
         this.link = link;
     }
 
-    public String getCurrentDate() {
-        return currentDate;
+    public String getCreatedDate() {
+        return createdDate;
     }
 
-    public void setCurrentDate(String currentDate) {
-        this.currentDate = currentDate;
+    public void setCreatedDate(String createdDate) {
+        this.createdDate = createdDate;
     }
 
-    public String getUpdateDate() {
-        return updateDate;
+    public String getUpdatedDate() {
+        return updatedDate;
     }
 
-    public void setUpdateDate(String updateDate) {
-        this.updateDate = updateDate;
+    public void setUpdatedDate(String updatedDate) {
+        this.updatedDate = updatedDate;
     }
 }
