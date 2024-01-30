@@ -20,23 +20,23 @@ import java.util.HashMap;
 @RestController
 public class UserController {
 
-  @Autowired
-  private UserRepository userRepository;
+    @Autowired
+    private UserRepository userRepository;
 
-  @PostMapping("/register-user")
+    @PostMapping("/register-user")
     public ResponseEntity<?> registerUser(@Valid @RequestBody User user, BindingResult result){
-      if(result.hasErrors()){
-          HashMap<String,String> errorMap= new HashMap<>();
-          for(FieldError error:result.getFieldErrors()){
-              var field=error.getField();
-              var defaultMessage=error.getDefaultMessage();
-              errorMap.put(field,defaultMessage);
-          }
-          return new ResponseEntity<>(errorMap, HttpStatus.OK);
-      }
-      var savedUser = userRepository.save(user);
-      return new ResponseEntity<>(savedUser, HttpStatusCode.valueOf(200));
-  }
+        if(result.hasErrors()){
+            HashMap<String,String> errorMap= new HashMap<>();
+            for(FieldError error:result.getFieldErrors()){
+                var field=error.getField();
+                var defaultMessage=error.getDefaultMessage();
+                errorMap.put(field,defaultMessage);
+            }
+            return new ResponseEntity<>(errorMap, HttpStatus.OK);
+        }
+        var savedUser = userRepository.save(user);
+        return new ResponseEntity<>(savedUser, HttpStatusCode.valueOf(200));
+    }
 
 
 
