@@ -14,8 +14,8 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Size(min = 5,max = 20,message = "fullName can be between 5 to 20")
-    private String name;
+    @Size(min = 5,max = 20,message = "userName can be between 5 to 20")
+    private String username;
 
     @Size(min = 8,max=30,message = "password size should be 8 t0 30")
     private String password;
@@ -38,12 +38,12 @@ public class User {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getUsername() {
+        return username;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {
