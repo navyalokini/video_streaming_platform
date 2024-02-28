@@ -8,12 +8,16 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
-     @ExceptionHandler(DuplicateTitleExecption.class)
+     @ExceptionHandler(DuplicateTitleException.class)
     public ResponseEntity<?> DuplicateTitleHandler(Exception ex){
         return new ResponseEntity<>("Duplicate title has been encountered", HttpStatusCode.valueOf(200));
     }
     @ExceptionHandler(TitleNotFound.class)
     public ResponseEntity<?> bookTitleNotFound(Exception ex){
          return new ResponseEntity<>("Book with provided title does'nt exist",HttpStatusCode.valueOf(200));
+    }
+    @ExceptionHandler
+    public ResponseEntity<?> someThingWentWrong(Exception ex){
+        return new ResponseEntity<>("Something went wrong",HttpStatusCode.valueOf(200));
     }
 }

@@ -1,6 +1,6 @@
 package com.code.latern.library_system_management.controllers;
 
-import com.code.latern.library_system_management.exceptions.DuplicateTitleExecption;
+import com.code.latern.library_system_management.exceptions.DuplicateTitleException;
 import com.code.latern.library_system_management.exceptions.TitleNotFound;
 import com.code.latern.library_system_management.models.Book;
 import com.code.latern.library_system_management.repositories.BookRepository;
@@ -26,7 +26,7 @@ public class BookController {
     private BookService bookService;
 
     @PostMapping("/save-book")
-    public ResponseEntity<?> saveBook(@Valid @RequestBody Book book, BindingResult result) throws DuplicateTitleExecption {
+    public ResponseEntity<?> saveBook(@Valid @RequestBody Book book, BindingResult result) throws DuplicateTitleException {
 
         if (result.hasErrors()) {
             HashMap<String, String> errorMap = new HashMap<>();
@@ -37,10 +37,11 @@ public class BookController {
             }
             return new ResponseEntity<>(errorMap, HttpStatusCode.valueOf(200));
         }
+
         try {
             return new ResponseEntity<>(bookRepository.save(book), HttpStatusCode.valueOf(200));
         } catch (Exception ex) {
-            throw new DuplicateTitleExecption("Duplicate title is encountered");
+            throw new DuplicateTitleException("Duplicate title is encountered");
         }
 
     }
@@ -82,9 +83,9 @@ public class BookController {
                 myBook.setAvailableQuantity(availableQuantity - 1);
                 return new ResponseEntity<>(myBook, HttpStatusCode.valueOf(200));
             }
-            return new ResponseEntity<>("Request book is not avaible", HttpStatusCode.valueOf(200));
+            return new ResponseEntity<>("Request book is not available", HttpStatusCode.valueOf(200));
         } else {
             throw new TitleNotFound("book title doesn't exist");
         }
-    }
+   }
 }
